@@ -25,6 +25,7 @@
     "@vitejs/plugin-vue": "^6.0.2",
     "@vue/tsconfig": "^0.8.1",
     "npm-run-all2": "^8.0.4",
+    "pinia-plugin-persistedstate": "^4.7.1",
     "typescript": "~5.9.0",
     "unplugin-auto-import": "^21.0.0",
     "unplugin-vue-components": "^32.1.0",

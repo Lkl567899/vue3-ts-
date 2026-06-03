@@ -1,12 +1,17 @@
+import { useUserStore } from "@/stores";
 import axios from "axios";
 const instance = axios.create({
     baseURL: 'http://big-event-vue-api-t.itheima.net',
     timeout: 5000,
-    headers: { 'X-Custom-Header': 'foobar' }
 });
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
+    const userStore = useUserStore()
+
+    if (userStore.token) {
+        config.headers.Authorization = userStore.token
+    }
     return config;
 }, function (error) {
     // 对请求错误做些什么

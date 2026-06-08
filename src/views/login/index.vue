@@ -45,12 +45,14 @@
 </template>
 
 <script setup lang="ts">
-import { PostLoginAPI, PostRegAPI} from '@/api/account';
+import { PostLoginAPI, PostRegAPI } from '@/api/account';
 import { useUserStore } from '@/stores';
 import { Search } from '@element-plus/icons-vue'
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus';
 import { reactive, ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
 const useStore = useUserStore()
+const router = useRouter()
 // 登录|注册切换
 const isShow = ref(true)
 
@@ -101,6 +103,8 @@ const submitForm = (formEl: FormInstance | undefined) => {
                     // 将Token存入pinia持久化       
                     useStore.setToekn(res.token)
                     ElMessage.success('登录成功')
+                    // 跳转到首页
+                    router.replace({ name: 'layout' })
                 } catch (error) {
                     ElMessage.error(`登录失败`)
                 }

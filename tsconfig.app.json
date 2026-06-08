@@ -6,7 +6,6 @@
     "src/**/*.ts",
     "src/**/*.vue",
     "auto-imports.d.ts", // 🌟 核心：强行让 TS 读取自动引入的全局变量声明
-    "components.d.ts"
   ],
   "exclude": [
     "src/**/__tests__/*"

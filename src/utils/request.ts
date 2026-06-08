@@ -1,10 +1,5 @@
 import { useUserStore } from "@/stores";
 import axios from "axios";
-export type APIResponse<T> = {
-    code: number
-    message: string
-    data?: T //数据
-}
 const instance = axios.create({
     baseURL: 'https://big-event-vue-api-t.itheima.net',
 
@@ -27,16 +22,14 @@ instance.interceptors.request.use(function (config) {
 // 添加响应拦截器
 instance.interceptors.response.use(function (response) {
     // 2xx 范围内的状态码都会触发该函数。
-    const res = response.data as APIResponse<any>
-    if (res.code !== 0) {
-       console.log(res);
-        return Promise.reject(res.message)
+    if (response.data.code !== 0) {
+        return Promise.reject(response.data.message)
     }
-    // 对响应数据做点什么
-    return res.data;
+    return response.data
 }, function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
     return Promise.reject(error);
 });
+
 export default instance

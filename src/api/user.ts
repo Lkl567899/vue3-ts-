@@ -1,5 +1,4 @@
 import request from '@/utils/request'
-import type { ApiResponse } from '../../env'
 // 获取用户信息
 export const GetUserInfoAPI = () => {
     return request.get<UserInfoRes>('/my/userinfo')

@@ -15,10 +15,11 @@
             </el-aside>
             <el-container>
                 <el-header>
-                    <div>管理者: <span class="myName">夜神月</span> </div>
+                    <div>管理者: <span class="myName">{{ useStore.userInfo?.nickname || useStore.userInfo?.username }}</span>
+                    </div>
                     <el-dropdown placement="bottom-end" @command="onCommand">
                         <div class="edit_right">
-                            <div class="user_image"></div>
+                            <el-avatar :icon="UserFilled" :src="useStore.userInfo?.user_pic"/>
                             <el-icon>
                                 <ArrowDown />
                             </el-icon>
@@ -27,7 +28,7 @@
                             <el-dropdown-menu>
                                 <el-dropdown-item command="profile">基本资料</el-dropdown-item>
                                 <el-dropdown-item command="avatar">更换头像</el-dropdown-item>
-                                <el-dropdown-item command="password" >重置密码</el-dropdown-item>
+                                <el-dropdown-item command="password">重置密码</el-dropdown-item>
                                 <el-dropdown-item command="logout">退出登录</el-dropdown-item>
                             </el-dropdown-menu>
                         </template>
@@ -43,11 +44,16 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowDown, Management } from '@element-plus/icons-vue';
+import { useUserStore } from '@/stores';
+import { ArrowDown, Management, UserFilled } from '@element-plus/icons-vue';
 // 下来菜单事件
-const onCommand = (command:any) => {
+const onCommand = (command: any) => {
     console.log(command);
 }
+// 获取用户信息
+const useStore = useUserStore()
+useStore.getUserInfo()
+
 </script>
 
 <style scoped lang="scss">
@@ -87,11 +93,10 @@ const onCommand = (command:any) => {
                 margin-left: 10px;
                 color: #999;
             }
-            .user_image {
-                background-color: red;
-                width: 45px;
-                height: 45px;
-                border-radius: 50%;
+
+            &:active,
+            &:focus {
+                outline: none;
             }
         }
     }

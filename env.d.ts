@@ -18,10 +18,10 @@ type FlatResponse<T> = {
 declare module 'axios' {
     export interface AxiosInstance {
         // 修正：把刚才写错的 StandardResponse 统一改成你上面定义好的 ApiResponse ！！！
-        request<T = any, R = ApiResponse<T> | FlatResponse<T>, D = any>(config: AxiosRequestConfig<D>): Promise<R>;
-        get<T = any, R = ApiResponse<T> | FlatResponse<T>, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
-        post<T = any, R = ApiResponse<T> | FlatResponse<T>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
-        put<T = any, R = ApiResponse<T> | FlatResponse<T>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
-        delete<T = any, R = ApiResponse<T> | FlatResponse<T>, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
+        request<T = any, R = ApiResponse<T>, D = any>(config: AxiosRequestConfig<D>): Promise<R>;
+        get<T = any, R = ApiResponse<T>, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
+        post<T = any, R = ApiResponse<T>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
+        put<T = any, R = ApiResponse<T>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
+        delete<T = any, R = ApiResponse<T>, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
     }
 }
